@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Player
 
 
@@ -24,3 +24,11 @@ def players_detail(request, player_id):
 class PlayerCreate(CreateView):
     model = Player
     fields = '__all__'
+
+class PlayerUpdate(UpdateView):
+    model = Player
+    fields = ['team', 'age', 'seasons', 'career_average_ppg']
+
+class PlayerDelete(DeleteView):
+    model = Player
+    success_url = '/players'
