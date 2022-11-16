@@ -1,25 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Player List</h1>    
+<h1>Player List</h1>
 
 {% for player in players %}
   <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ player.name }}</span>
-      <p>Team: {{ player.team }}</p>
-      <p>Age: {{ player.age }}</p>
-      {% if player.seasons > 0 %}
-        <p>Seasons: {{ player.seasons }}</p>
-      {% else %}
-        <p>Seasons: Rookie</p>
-      {% endif %}
-      {% if player.career_average_points > 0 %}
-        <p>Career Average Points: {{ player.career_average_points }}</p>
-      {% else %}
-        <p>Career Average Points: No completed seasons yet</p>
-      {% endif %}
-    </div>
+    <a href="{% url 'detail' player.id %}">
+      <div class="card-content">
+        <span class="card-title">{{ player.name }}</span>
+        <p>Team: {{ player.team }}</p>
+        <p>Age: {{ player.age }}</p>
+        {% if player.seasons > 0 %}
+          <p>Seasons: {{ player.seasons }}</p>
+        {% else %}
+          <p>Seasons: Rookie</p>
+        {% endif %}
+        {% if player.career_average_ppg > 0 %}
+          <p>Career Average PPG: {{ player.career_average_ppg }}</p>
+        {% else %}
+          <p>Career Average PPG: No completed seasons yet</p>
+        {% endif %}
+      </div>
+    </a>
   </div>
 {% endfor %}
 
