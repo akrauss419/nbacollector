@@ -15,11 +15,12 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">NBA Collector</a></li>
+          <li><a href="{% url 'home' %}" class="left brand-logo">NBA Collector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/players">View All My Players</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'players_create' %}">Add a Player</a></li>
+          <li><a href="{% url 'index' %}">View All My Players</a></li>
         </ul>
       </div>
     </nav>

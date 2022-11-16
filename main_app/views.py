@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Player
 
 
@@ -19,3 +20,7 @@ def players_detail(request, player_id):
     return render(request, 'players/detail.html', {
         'player': player
     })
+
+class PlayerCreate(CreateView):
+    model = Player
+    fields = '__all__'
