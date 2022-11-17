@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 OPPONENTS = (
   ('ATL', 'Atlanta Hawks'),
@@ -34,7 +35,27 @@ OPPONENTS = (
   ('WAS', 'Washington Wizards')
 )
 
+TYPE = (
+  ('O', 'Offense'),
+  ('D', 'Defense'),
+)
+
 # Create your models here.
+class Skill(models.Model):
+  name = models.CharField(max_length=50)
+  type = models.CharField(
+    max_length=7,
+    choices=TYPE,
+    default=TYPE[0][0]
+    )
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('skills_detail', kwargs={'pk': self.id})
+
+
 class Player(models.Model):
   name = models.CharField(max_length=100)
   team = models.CharField(max_length=100)

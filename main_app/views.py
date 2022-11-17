@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Player
+from django.views.generic import ListView, DetailView
+from .models import Player, Skill
 from .forms import PastGameForm
 
 
@@ -38,9 +39,26 @@ class PlayerDelete(DeleteView):
 
 def add_past_game(request, player_id):
   form = PastGameForm(request.POST)
-  print(form)
   if form.is_valid():
     new_past_game = form.save(commit=False)
     new_past_game.player_id = player_id
     new_past_game.save()
   return redirect('detail', player_id=player_id)
+
+class SkillList(ListView):
+  model = Skill
+
+class SkillDetail(DetailView):
+  model = Skill
+
+class SkillCreate(CreateView):
+  model = Skill
+  fields = '__all__'
+
+class SkillUpdate(UpdateView):
+  model = Skill
+  fields = ['name', 'type']
+
+class SkillDelete(DeleteView):
+  model = Skill
+  success_url = '/skills'

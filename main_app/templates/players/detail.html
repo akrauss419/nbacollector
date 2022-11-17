@@ -27,6 +27,7 @@
   </div>
 </div>
 <div class="col s6">
+  <h6>Past Games (2022-23 Season):</h6>
   <form action="{% url 'add_past_game' player.id %}" method="POST">
     {% csrf_token %}
     {{ past_game_form.as_p }}

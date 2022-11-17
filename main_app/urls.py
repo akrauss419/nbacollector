@@ -10,4 +10,9 @@ urlpatterns = [
   path('players/<int:pk>/update', views.PlayerUpdate.as_view(), name='players_update'),
   path('players/<int:pk>/delete', views.PlayerDelete.as_view(), name='players_delete'),
   path('players/<int:player_id>/add_past_game/', views.add_past_game, name='add_past_game'),
+  path('skills/', views.SkillList.as_view(), name='skills_index'),
+  path('skills/<int:pk>/', views.SkillDetail.as_view(), name='skills_detail'),
+  path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
+  path('skills/<int:pk>/update/', views.SkillUpdate.as_view(), name='skills_update'),
+  path('skills/<int:pk>/delete/', views.SkillDelete.as_view(), name='skills_delete'),
 ]
