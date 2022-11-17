@@ -49,7 +49,7 @@ class Player(models.Model):
     return reverse('detail', kwargs={'player_id': self.id})
 
 
-class PastGames(models.Model):
+class PastGame(models.Model):
   date = models.DateField('Game Date')
   opponent = models.CharField(
     max_length=3,
@@ -65,3 +65,6 @@ class PastGames(models.Model):
 
   def __str__(self):
     return f"Played {self.get_opponent_display()} on {self.date}"
+  
+  class Meta:
+    ordering = ['-date']
