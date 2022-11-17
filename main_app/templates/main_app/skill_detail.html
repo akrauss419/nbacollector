@@ -9,7 +9,7 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ skill.name }}</span>
-        <p>Type: {{ skill.type }}</p>
+        <p>Type: {{ skill.get_type_display }}</p>
       </div>
       <div class="card-action">
         <a href="{% url 'skills_update' skill.id %}">Edit</a>

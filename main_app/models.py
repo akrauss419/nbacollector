@@ -62,6 +62,7 @@ class Player(models.Model):
   age = models.IntegerField()
   seasons = models.IntegerField()
   career_average_ppg = models.DecimalField(decimal_places=1, max_digits=3)
+  skills = models.ManyToManyField(Skill)
 
   def __str__(self):
     return f"{self.name} ({self.id})"

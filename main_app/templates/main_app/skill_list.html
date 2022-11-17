@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<h1>Skill List</h1>
+<h1>Skills List</h1>
 
 {% for skill in skill_list %}
   <a href="{% url 'skills_detail' skill.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ skill.name }}</span>
-            <p>Type: {{ skill.type }}</p>
+            <p>Type: {{ skill.get_type_display }}</p>
         </div>
     </div>
   </a>

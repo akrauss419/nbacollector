@@ -19,15 +19,18 @@ def players_index(request):
 
 def players_detail(request, player_id):
   player = Player.objects.get(id=player_id)
+  id_list = player.skills.all().values_list('id')
+  skills_player_doesnt_have = Skill.objects.exclude(id__in=id_list)
   past_game_form = PastGameForm()
   return render(request, 'players/detail.html', {
     'player': player, 
-    'past_game_form': past_game_form
+    'past_game_form': past_game_form,
+    'skills': skills_player_doesnt_have
   })
 
 class PlayerCreate(CreateView):
   model = Player
-  fields = '__all__'
+  fields = ['name', 'team', 'age', 'seasons', 'career_average_ppg']
 
 class PlayerUpdate(UpdateView):
   model = Player
@@ -62,3 +65,11 @@ class SkillUpdate(UpdateView):
 class SkillDelete(DeleteView):
   model = Skill
   success_url = '/skills'
+
+def assoc_skill(request, player_id, skill_id):
+  Player.objects.get(id=player_id).skills.add(skill_id)
+  return redirect('detail', player_id=player_id)
+
+def unassoc_skill(request, player_id, skill_id):
+  Player.objects.get(id=player_id).skills.remove(skill_id)
+  return redirect('detail', player_id=player_id)
